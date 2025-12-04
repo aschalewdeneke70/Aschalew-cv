@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aschalew Deneke Haile | Electromechanical Engineer | Professional Portfolio</title>
+    <meta name="description" content="Dedicated Electromechanical Engineer specializing in optimizing infrastructure performance, efficiency, and safety.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Base styles (for web view - less relevant for the 1-page goal, but needed for navigation) */
+        body { font-family: 'Inter', sans-serif; }
+        .timeline-container { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline-container::after { content: ''; position: absolute; width: 3px; background-color: #cbd5e1; top: 0; bottom: 0; left: 50%; margin-left: -1.5px; }
+        .timeline-item { padding: 10px 40px; position: relative; width: 50%; }
+        /* Timeline dots and positioning styles remain for web view */
+
+        /* FULLSCREEN PREVIEW OVERLAY STYLE */
+        #fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+        }
+
+        #fullscreen-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        #close-overlay {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #fff;
+            border: 2px solid #3b82f6;
+            color: #3b82f6;
+            font-size: 1rem;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            transition: background 0.2s, color 0.2s;
+        }
+        
+        /* 1. PRINT STYLES: Optimize for 1-page professional CV */
+        @media print {
+            
+            /* Hide non-CV elements */
+            #navbar, #fullscreen-overlay, #contact, footer, #home, .skill-bar-container {
+                display: none !important;
+                visibility: hidden !important;
+            }
+
+            /* Set A4 page margins to minimal */
+            @page {
+                size: A4;
+                margin: 0.5cm !important; /* Minimal margins */
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+                padding: 0;
+                margin: 0;
+            }
+
+            /* Force 2-column layout for the main content area */
+            #print-container {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                width: 100%;
+                /* Use CSS Grid for better control and separation */
+                display: grid;
+                grid-template-columns: 30% 70%; /* Left Column is narrower */
+                gap: 20px;
+                padding: 0 !important;
+            }
+            
+            /* General section adjustments */
+            section {
+                padding: 5px 0 5px 0 !important;
+                margin: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            .max-w-7xl, .max-w-4xl {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
+            /* Adjust header for the 1-page layout */
+            .cv-header {
+                width: 100%;
+                grid-column: 1 / -1; /* Span both columns */
+                padding: 10px 0;
+                margin-bottom: 10px;
+            }
+            .cv-header h1 {
+                font-size: 1.5rem !important;
+                margin-bottom: 0px !important;
+            }
+            .cv-header h3 {
+                font-size: 0.8rem !important;
+            }
+            
+            /* LEFT COLUMN - Narrower content (Contact, Skills, Education) */
+            .cv-left-col {
+                grid-column: 1 / 2;
+                padding-right: 15px; /* Visual separation */
+                border-right: 1px solid #ccc; /* Separator line */
+            }
+
+            /* RIGHT COLUMN - Wider content (Profile, Experience) */
+            .cv-right-col {
+                grid-column: 2 / 3;
+            }
+
+            /* Styling the sections to look like the image */
+            .cv-section-title {
+                font-size: 0.9rem !important;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #2c5282; /* Darker blue/primary color */
+                border-bottom: 2px solid #2c5282;
+                padding-bottom: 2px;
+                margin-top: 15px !important;
+                margin-bottom: 5px !important;
+            }
+            
+            /* Detail text size reduction for fit */
+            p, li, .text-sm, .text-xs, .text-base {
+                font-size: 0.75rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            /* Flatten experience timeline for space */
+            .timeline-container {
+                position: static !important;
+            }
+            .timeline-item {
+                width: 100% !important;
+                padding: 0 !important;
+                margin-bottom: 8px !important;
+            }
+            .timeline-container::after, .timeline-item::after {
+                content: none !important;
+            }
+            .timeline-date {
+                font-style: normal;
+                font-weight: 500;
+                display: block;
+            }
+            
+            /* Style Technical Skills (Tags) to resemble the image */
+            .general-skills {
+                border-top: none !important;
+                padding-top: 0 !important;
+                margin-top: 5px !important;
+            }
+            .skill-tag {
+                background-color: #e2e8f0 !important;
+                color: #4a5568 !important;
+                padding: 2px 5px !important;
+                margin: 2px 2px 2px 0 !important;
+                font-size: 0.7rem !important;
+                display: inline-block;
+                border-radius: 4px;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#007bff',
+                        'primary-dark': '#0056b3',
+                        'secondary-green': '#28a745',
+                        'header-bg': '#317f8a', /* Custom color approximating the image header */
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+
+    <div id="fullscreen-overlay">
+        <div id="fullscreen-content" class="text-center p-10 bg-white">
+            <button id="close-overlay">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <h2 class="text-4xl font-extrabold text-primary-dark mb-4">ASCHALEW D.H.</h2>
+            <p class="text-xl text-gray-700 mb-8">Professional Electromechanical Engineering Portfolio</p>
+            <p class="text-lg text-gray-600 mb-10">To get the one-page CV look like the image, please use your browser's print function (**Ctrl+P or Cmd+P**) and select "**Save as PDF**". The print version is optimized to be a **single-page professional CV**.</p>
+            <div class="flex justify-center space-x-4">
+                <button onclick="document.getElementById('fullscreen-overlay').style.display='none'; window.print();" class="inline-flex items-center px-8 py-3 bg-secondary-green rounded-full text-white font-semibold shadow-lg hover:bg-green-700 transition duration-300 transform hover:scale-105">
+                    <i data-lucide="file-text" class="w-5 h-5 mr-2"></i> Print / Save as PDF (1 Page)
+                </button>
+                <button onclick="document.getElementById('fullscreen-overlay').style.display='none';" class="inline-flex items-center px-8 py-3 bg-white border-2 border-primary rounded-full text-primary font-semibold shadow-md hover:bg-primary hover:text-white transition duration-300 transform hover:scale-105">
+                    View Full Website <i data-lucide="eye" class="w-5 h-5 ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <nav id="navbar" class="sticky top-0 bg-white shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#home" class="text-xl font-bold text-primary-dark">ASCHALEW D.H.</a>
+            <ul class="flex space-x-6 text-sm font-medium">
+                <li><a href="#home" class="hover:text-primary transition duration-300">Home</a></li>
+                <li><a href="#about" class="hover:text-primary transition duration-300">About</a></li>
+                <li><a href="#experience" class="hover:text-primary transition duration-300">Experience</a></li>
+                <li><a href="#skills" class="hover:text-primary transition duration-300">Skills</a></li>
+                <li><a href="#contact" class="hover:text-primary transition duration-300">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home" class="min-h-[80vh] flex items-center justify-center bg-white border-b border-gray-200">
+        <div class="max-w-4xl text-center px-4 py-20">
+            <span class="text-sm tracking-widest uppercase text-gray-500 mb-2 block">Electromechanical Engineer</span>
+            <h1 class="text-5xl md:text-6xl font-extrabold text-primary-dark mb-2 leading-tight">ASCHALEW DENEKE HAILE</h1>
+            <h3 class="text-2xl font-light text-gray-600 mb-6">Building Systems Maintenance Professional</h3>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">Dedicated professional specializing in integrating mechanical, electrical, and computer systems to optimize infrastructure performance, efficiency, and safety.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#" class="inline-flex items-center px-8 py-3 bg-primary rounded-full text-white font-semibold shadow-lg hover:bg-primary-dark transition duration-300 transform hover:scale-105">
+                    <i data-lucide="download" class="w-5 h-5 mr-2"></i> Download CV
+                </a>
+                <a href="#contact" class="inline-flex items-center px-8 py-3 bg-white border-2 border-primary rounded-full text-primary font-semibold shadow-md hover:bg-primary hover:text-white transition duration-300 transform hover:scale-105">
+                    Get In Touch <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <div id="print-container" class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <header class="cv-header text-center py-4 text-white bg-header-bg">
+            <h1 class="text-3xl font-extrabold tracking-wide">ASCHALEW DENEKE HAILE</h1>
+            <h3 class="text-sm font-light uppercase tracking-wider mt-1">ELECTROMECHANICAL ENGINEER | BUILDING SYSTEMS MAINTENANCE PROFESSIONAL</h3>
+        </header>
+        
+        <div class="flex flex-col md:flex-row mt-4">
+            
+            <div class="cv-left-col w-full md:w-1/3 p-4 space-y-4">
+
+                <section>
+                    <h2 class="cv-section-title">CONTACT & PROFILE</h2>
+                    <div class="text-sm mt-2 space-y-1">
+                        <p><strong>Phone:</strong> +251 970839866</p>
+                        <p><strong>Email:</strong> aschalewdeneke70@gmail.com</p>
+                        <p><strong>Location:</strong> Addis Ababa, Ethiopia</p>
+                        <p><strong>Language:</strong> English (Advanced), Amharic (Native), Guragegna (Low)</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2 class="cv-section-title">EDUCATION</h2>
+                    <div class="text-sm mt-2">
+                        <p class="font-semibold">B.Sc. in Electromechanical Engineering</p>
+                        <p class="text-xs italic">Hawassa University, Ethiopia</p>
+                        <p class="text-xs">Graduation: June 2022 | CGPA: 2.83</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2 class="cv-section-title">CERTIFICATIONS & ACTIVITIES</h2>
+                    <ul class="text-sm mt-2 list-none space-y-1">
+                        <li>Robotics Project Certification (Feb 2021)</li>
+                        <li>Technological Exhibition Participant (Feb 2021)</li>
+                        <li>Summer Volunteer Service (Jun-Sep 2018)</li>
+                    </ul>
+                </section>
+
+                <section id="skills-print">
+                    <h2 class="cv-section-title">TECHNICAL EXPERTISE</h2>
+                    <div class="general-skills">
+                        <div class="flex flex-wrap">
+                            <span class="skill-tag">HVAC Systems</span>
+                            <span class="skill-tag">Electrical Systems</span>
+                            <span class="skill-tag">Elevators & Fire Protection</span>
+                            <span class="skill-tag">Preventive Maintenance (PM)</span>
+                            <span class="skill-tag">Troubleshooting & System Diagnostics</span>
+                            <span class="skill-tag">SCADA / PLC</span>
+                            <span class="skill-tag">SOLIDWORKS & MATLAB</span>
+                            <span class="skill-tag">Leadership & Communication</span>
+                            <span class="skill-tag">Working Under Pressure</span>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="cv-right-col w-full md:w-2/3 p-4 space-y-6">
+                
+                <section id="about">
+                    <h2 class="cv-section-title">PROFESSIONAL PROFILE</h2>
+                    <p class="text-base mt-2">
+                        Highly dedicated and proactive **Electromechanical Engineer/Maintenance Professional** with 1.5 years of practical experience in managing and optimizing complex building systems. Expertise in integrating mechanical, electrical, and computer fields to ensure infrastructure performance, safety compliance, and operational efficiency. Committed to continuous self-update, possessing strong leadership, communication, and troubleshooting skills to achieve optimal system functionality while working effectively under pressure.
+                    </p>
+                </section>
+                
+                <section id="experience">
+                    <h2 class="cv-section-title">WORK EXPERIENCE</h2>
+                    
+                    <div class="timeline-container mt-4">
+                        <div class="timeline-item bg-white p-2 rounded-lg border-b border-gray-200">
+                            <h3 class="text-sm font-bold text-primary-dark">Electromechanical Engineer / Maintenance Person</h3>
+                            <h4 class="text-xs italic text-gray-600">SALFAZ Pvt. Ltd. Co. (Salfaz Building), Addis Ababa</h4>
+                            <div class="timeline-date text-xs text-gray-500 mb-2">September 2022 – April 2024</div>
+                            <ul class="text-xs list-disc pl-5 space-y-1">
+                                <li>Spearheaded preventative maintenance (PM) and corrective maintenance for critical systems including HVAC, elevators, fire protection, and lighting.</li>
+                                <li>Successfully diagnosed and implemented solutions for complex electrical, mechanical, and plumbing system deficiencies.</li>
+                                <li>Coordinated technical repairs and system upgrades with maintenance staff and vendors to enhance building performance.</li>
+                                <li>Ensured strict adherence to safety standards and maintained meticulous documentation of all maintenance activities.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="timeline-item bg-white p-2 rounded-lg border-b border-gray-200">
+                            <h3 class="text-sm font-bold text-primary-dark">Engine Cadet</h3>
+                            <h4 class="text-xs italic text-gray-600">Seacon Shipping Management PTE.LTD (Vessel: Green Itaqui)</h4>
+                            <div class="timeline-date text-xs text-gray-500 mb-2">November 20, 2024 – July 28, 2025</div>
+                            <ul class="text-xs list-disc pl-5 space-y-1">
+                                <li>Assisted senior officers in closely monitoring the daily operations and maintenance tasks of the vessel's engine room.</li>
+                                <li>Assisted with performing preventive maintenance (PM) tasks on machinery and supporting systems (e.g., pumps, valves, filters).</li>
+                                <li>Gained practical maritime experience by actively participating in following and implementing safety regulations.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="timeline-item bg-white p-2 rounded-lg border-b border-gray-200">
+                            <h3 class="text-sm font-bold text-primary-dark">Internship: System Exposure & Project Development</h3>
+                            <h4 class="text-xs italic text-gray-600">Ethiopian Electric Utility</h4>
+                            <div class="timeline-date text-xs text-gray-500 mb-2">May 2021 – September 2021</div>
+                            <ul class="text-xs list-disc pl-5 space-y-1">
+                                <li>Gained invaluable experience in five critical departments: Operation, Planning, Automation, Engineer Construction, and Maintenance.</li>
+                                <li>Acquired practical skills with SCADA software.</li>
+                                <li>Developed a final project: 'Android Phone Controlled Circuit Breaker for Line Man'.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+    
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-primary-dark mb-12 flex items-center justify-center">
+                <i data-lucide="mail" class="w-7 h-7 mr-3 text-primary"></i> Get In Touch
+            </h2>
+            <p class="text-center text-lg text-gray-600 max-w-2xl mx-auto mb-10">I am available for new opportunities and inquiries. Please feel free to reach out.</p>
+            
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                <div class="contact-details col-span-1 space-y-6">
+                    <h3 class="text-xl font-semibold text-primary-dark">Contact Details</h3>
+                    <p class="flex items-center text-gray-700">
+                        <i data-lucide="map-pin" class="w-5 h-5 mr-3 text-primary flex-shrink-0"></i> Location: Addis Ababa, Ethiopia
+                    </p>
+                    <p class="flex items-center text-gray-700">
+                        <i data-lucide="phone" class="w-5 h-5 mr-3 text-primary flex-shrink-0"></i> Phone: +251 970839866
+                    </p>
+                    <p class="flex items-center text-gray-700">
+                        <i data-lucide="at-sign" class="w-5 h-5 mr-3 text-primary flex-shrink-0"></i> Email: aschalewdeneke70@gmail.com
+                    </p>
+                </div>
+
+                <form class="contact-form md:col-span-2 space-y-4">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-4">Send Me a Message</h3>
+                    <input type="text" placeholder="Your Name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                    <input type="email" placeholder="Your Email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                    <input type="text" placeholder="Subject" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                    <textarea placeholder="Your Message" rows="5" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"></textarea>
+                    <button type="submit" class="w-full inline-flex justify-center items-center px-6 py-3 bg-primary rounded-lg text-white font-semibold shadow-md hover:bg-primary-dark transition duration-300">
+                        Send Message <i data-lucide="send" class="w-5 h-5 ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; <span id="year"></span> Aschalew Deneke Haile. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Dynamically set the current year in the footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 2. Initialize Lucide icons
+        lucide.createIcons();
+        
+        // 3. Close fullscreen overlay when 'X' is clicked
+        document.getElementById('close-overlay').addEventListener('click', function() {
+            document.getElementById('fullscreen-overlay').style.display = 'none';
+        });
+
+        // 4. Progress Bar Animation (Kept for web view, hidden in print)
+        document.addEventListener('DOMContentLoaded', () => {
+            const skillContainers = document.querySelectorAll('.skill-bar-container');
+            
+            const animateSkills = () => {
+                skillContainers.forEach(container => {
+                    const level = container.getAttribute('data-level');
+                    const fill = container.querySelector('.progress-bar-fill');
+                    if (fill && level) {
+                        requestAnimationFrame(() => {
+                            fill.style.width = `${level}%`;
+                        });
+                    }
+                });
+            };
+            animateSkills();
+        });
+    </script>
+</body>
+</html>
